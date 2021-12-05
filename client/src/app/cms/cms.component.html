@@ -1,0 +1,26 @@
+<div class="content-container">
+    <div class="content-area">
+      <p>
+        Content Area
+      </p>
+
+      <p *ngIf="currentActive == ''">
+        please select cms things
+      </p>
+
+      <app-cms-add-image *ngIf="currentActive == 'addimage'"></app-cms-add-image>
+      <app-cms-edit-image *ngIf="currentActive == 'editimage'"></app-cms-edit-image>
+    </div>
+
+    <nav class="sidenav">
+      <section class="sidenav-content">
+        <section class="nav-group">
+          <label for="tabexample2">Dashboard</label>
+          <ul class="nav-list">
+              <li><a [ngClass]="{'active': currentActive == 'addimage'}" class="nav-link" (click)="changeActive('addimage')">Add Image</a></li>
+              <li><a class="nav-link" [ngClass]="{'active': currentActive == 'editimage'}" (click)="changeActive('editimage')">Edit Image</a></li>
+          </ul>
+        </section>
+      </section>
+    </nav>
+</div>
