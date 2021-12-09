@@ -13,6 +13,8 @@ import { AlertComponent } from './alert/alert.component';
 import { AttractComponent } from './attract/attract.component';
 import { CmsAddImageComponent } from './cms-add-image/cms-add-image.component';
 import { CmsEditImageComponent } from './cms-edit-image/cms-edit-image.component';
+import { ImagesComponent } from './components/images/images.component';
+import { VideosComponent } from './components/videos/videos.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { CmsEditImageComponent } from './cms-edit-image/cms-edit-image.component
     AlertComponent,
     AttractComponent,
     CmsAddImageComponent,
-    CmsEditImageComponent
+    CmsEditImageComponent,
+    ImagesComponent,
+    VideosComponent
   ],
   imports: [
     BrowserModule,
