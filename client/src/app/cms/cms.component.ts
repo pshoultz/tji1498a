@@ -16,6 +16,8 @@ export class CmsComponent implements OnInit {
     ngOnInit(): void {
         this.api.testRoute().subscribe(data => {
             debugger
+        }, error => {
+            debugger
         });
     }
 

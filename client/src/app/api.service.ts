@@ -20,8 +20,7 @@ export class ApiService {
     }
 
     testRoute(): Observable<any> {
-        //return this.http.get(this.baseRoute + "/ping");
-        return this.http.get(this.baseRoute + "/addImage");
+        return this.http.get(this.baseRoute + "/ping");
     }
 
     addImage() {
