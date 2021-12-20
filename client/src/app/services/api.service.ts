@@ -7,8 +7,16 @@ import { HttpClient } from '@angular/common/http';
 
 export class ApiService {
 
-    let base: string = "http://localhost:4200"
+    private base: string = "http://localhost:4200";
 
-    constructor(private http: HttpClient) { }
+    constructor(http: HttpClient) { }
+
+    test() {
+        //return this.http.get<any>(base + "/test");
+    }
+
+    //addImage() {
+    //    return this.http.post
+    //}
 
 }
