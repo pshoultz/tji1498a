@@ -5,11 +5,18 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './cms.component.html',
   styleUrls: ['./cms.component.css']
 })
+
 export class CmsComponent implements OnInit {
 
-  constructor() { }
+    public currentComponent: string = "";
 
-  ngOnInit(): void {
-  }
+    constructor() { }
+
+    ngOnInit(): void {
+    }
+
+    selectComponent(s: string) {
+        this.currentComponent = s;
+    }
 
 }
