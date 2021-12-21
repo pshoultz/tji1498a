@@ -9,13 +9,15 @@ import { ApiService } from '../../services/api.service';
 
 export class CmsImagesComponent implements OnInit {
 
-    constructor() { }
+    constructor(public api: ApiService) { }
 
     ngOnInit(): void {
+        this.api.test().subscribe();
     }
 
     addImage(event: any) {
         var img = event.target.files[0];
+        this.api.addImage(img).subscribe();
         debugger
     }
 

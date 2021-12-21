@@ -1,6 +1,7 @@
 package router
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/gin-contrib/cors"
@@ -23,8 +24,22 @@ func Start() {
 	}))
 
 	r.POST("/addImage", func(c *gin.Context) {
+		fmt.Println()
+		//file, header, err := c.Request.FormFile("upload")
+		//filename := header.Filename
+		//fmt.Println(header.Filename)
+		//out, err := os.Create("../images/asdf123" + filename + ".jpg")
+		//if err != nil {
+		//	log.Fatal(err)
+		//}
+		//defer out.Close()
+		//_, err = io.Copy(out, file)
+		//if err != nil {
+		//	log.Fatal(err)
+		//}
+
 		c.JSON(200, gin.H{
-			"message": "pong",
+			"message": "add image route hit",
 		})
 	})
 
