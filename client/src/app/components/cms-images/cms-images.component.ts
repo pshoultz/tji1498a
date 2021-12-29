@@ -12,13 +12,20 @@ export class CmsImagesComponent implements OnInit {
     constructor(public api: ApiService) { }
 
     ngOnInit(): void {
-        this.api.test().subscribe();
+        //this.api.test().subscribe();
     }
 
-    addImage(event: any) {
+    uploadImage(event: any) {
         var img = event.target.files[0];
-        this.api.addImage(img).subscribe();
-        debugger
+        var reader = new FileReader();
+
+        reader.readAsDataURL(img);
+        reader.onload = () => {
+            //reader.result;
+            this.api.uploadImage(reader.result).subscribe(response => {
+                debugger
+            });
+        }
     }
 
 }

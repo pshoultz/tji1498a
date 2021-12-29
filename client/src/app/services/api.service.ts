@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 
 export class ApiService {
 
+    //NOTE: base path should be read from json config file
     private base: string = "http://localhost:8080";
 
     constructor(public http: HttpClient) { }
@@ -15,8 +16,9 @@ export class ApiService {
         return this.http.get(this.base + "/test");
     }
 
-    addImage(image: any) {
-        return this.http.post(this.base + "/addImage", image);
+    uploadImage(b64: any) {
+        debugger
+        return this.http.post(this.base + "/uploadImage", b64);
     }
 
 }
