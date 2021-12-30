@@ -16,9 +16,9 @@ export class ApiService {
         return this.http.get(this.base + "/test");
     }
 
-    uploadImage(b64: any) {
+    uploadImage(data: any) {
         debugger
-        return this.http.post(this.base + "/uploadImage", b64);
+        return this.http.post(this.base + "/uploadImage", data);
     }
 
 }

@@ -1,7 +1,6 @@
 package router
 
 import (
-	"io/ioutil"
 	"log"
 	"time"
 
@@ -13,9 +12,8 @@ func Start() {
 	r := gin.Default()
 
 	r.Use(cors.New(cors.Config{
-		AllowOrigins: []string{"*"},
-		AllowMethods: []string{"*"},
-		//AllowHeaders:     []string{"Access-Control-Allow-Origin"},
+		AllowOrigins:     []string{"*"},
+		AllowMethods:     []string{"*"},
 		AllowHeaders:     []string{"*"},
 		ExposeHeaders:    []string{"*"},
 		AllowCredentials: true,
@@ -26,13 +24,29 @@ func Start() {
 	}))
 
 	r.POST("/uploadImage", func(c *gin.Context) {
-		body, _ := ioutil.ReadAll(c.Request.Body)
+		type data_struct struct {
+			UserID    string `json:"userID"`
+			B64       string `json:"b64"`
+			Extension string `json:"extension"`
+		}
 
-		log.Println(body)
+		var data data_struct
 
-		c.JSON(200, gin.H{
-			"message": "/addimage route hit",
-		})
+		err := c.BindJSON(&data)
+
+		if err != nil {
+			panic(err)
+
+			c.JSON(400, gin.H{
+				"message": "image failed to upload",
+			})
+		} else {
+			log.Println(data.UserID)
+
+			c.JSON(200, gin.H{
+				"message": "image upload ok",
+			})
+		}
 	})
 
 	r.GET("/ping", func(c *gin.Context) {

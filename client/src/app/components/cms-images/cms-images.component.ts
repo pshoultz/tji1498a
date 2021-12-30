@@ -19,10 +19,18 @@ export class CmsImagesComponent implements OnInit {
         var img = event.target.files[0];
         var reader = new FileReader();
 
+
         reader.readAsDataURL(img);
+        debugger
         reader.onload = () => {
-            //reader.result;
-            this.api.uploadImage(reader.result).subscribe(response => {
+            var data: any = {
+                "b64": reader.result,
+                "userID": "asdf123",
+                "extension": img.name.split(".")[1]
+            };
+            debugger
+            //this.api.uploadImage(reader.result).subscribe(response => {
+            this.api.uploadImage(data).subscribe(response => {
                 debugger
             });
         }
