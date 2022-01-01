@@ -19,12 +19,12 @@ export class CmsImagesComponent implements OnInit {
         var img = event.target.files[0];
         var reader = new FileReader();
 
-
         reader.readAsDataURL(img);
-        debugger
+
         reader.onload = () => {
+            var b64: string = reader.result as string;
             var data: any = {
-                "b64": reader.result,
+                "b64": b64.split(",")[1],
                 "userID": "asdf123",
                 "extension": img.name.split(".")[1]
             };
