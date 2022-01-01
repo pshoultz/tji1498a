@@ -1,9 +1,12 @@
 package router
 
 import (
+	"bytes"
 	"crypto/rand"
 	"encoding/base64"
 	"fmt"
+	"image/png"
+	"os"
 	"time"
 
 	"github.com/gin-contrib/cors"
@@ -34,9 +37,8 @@ func Start() {
 
 		var data Data_Struct
 		err := c.BindJSON(&data)
-		dec, err := base64.StdEncoding.DecodeString(data.B64)
-
 		b := make([]byte, 16)
+		dec, err := base64.StdEncoding.DecodeString(data.B64)
 
 		if err != nil {
 			panic(err)
@@ -54,20 +56,18 @@ func Start() {
 			}
 
 			filename := fmt.Sprintf("%X", b)
-			//newPath := filepath.Join("../images/asdf123/", filename + "." data.B64)
 
-			if err != nil {
-				panic(err)
-			}
+			switch data.Extension {
+			case "jpg":
+			case "png":
+				r := bytes.NewReader(dec)
+				img, err := png.Decode(r)
+				file, err := os.OpenFile(filename+"."+data.Extension, os.O_WRONLY|os.O_CREATE, 0777)
+				if err != nil {
+					panic("Cannot open file")
+				}
 
-			defer file.Close()
-
-			if _, err := file.Write(dec); err != nil {
-				panic(err)
-			}
-
-			if err := file.Sync(); err != nil {
-				panic(err)
+				png.Encode(file, img, nil)
 			}
 
 			c.JSON(200, gin.H{
