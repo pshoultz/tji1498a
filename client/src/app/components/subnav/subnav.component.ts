@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SubnavComponent implements OnInit {
 
-  constructor() { }
+    public currentNavItem: string = "";
 
-  ngOnInit(): void {
-  }
+    constructor() { }
+
+    ngOnInit(): void {
+    }
+
+    select(item: string) {
+        this.currentNavItem = item;
+    }
 
 }

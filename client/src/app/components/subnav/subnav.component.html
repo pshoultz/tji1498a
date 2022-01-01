@@ -1,7 +1,14 @@
 <nav class="subnav">
     <ul class="nav">
         <li class="nav-item">
-            <a class="nav-link active" [routerLink]="">cms</a>
+            <a 
+                id="cms" 
+                class="nav-link" 
+                [ngClass]="{active: currentNavItem == 'cms'}"
+                [routerLink]="['/cms']"
+                (click)="select('cms')">
+                cms
+            </a>
         </li>
     </ul>
 </nav>
