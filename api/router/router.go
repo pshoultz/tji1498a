@@ -60,6 +60,14 @@ func Start() {
 
 			switch data.Extension {
 			case "jpg":
+				r := bytes.NewReader(dec)
+				img, err := jpeg.Decode(r)
+				f, err := os.OpenFile(filename+"."+data.Extension, os.O_WRONLY|os.O_CREATE, 0777)
+				if err != nil {
+					panic("Cannot open file")
+				}
+
+				jpeg.Encode(f, img, nil)
 			case "png":
 				r := bytes.NewReader(dec)
 				img, err := png.Decode(r)
@@ -68,7 +76,7 @@ func Start() {
 					panic("Cannot open file")
 				}
 
-				jpeg.Encode(f, img, nil)
+				png.Encode(f, img, nil)
 			}
 
 			c.JSON(200, gin.H{
