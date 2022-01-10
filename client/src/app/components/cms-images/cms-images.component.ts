@@ -9,10 +9,14 @@ import { ApiService } from '../../services/api.service';
 
 export class CmsImagesComponent implements OnInit {
 
-    constructor(public api: ApiService) { }
+    public images: any;
+    
+    constructor(
+        public api: ApiService,
+    ) { }
 
     ngOnInit(): void {
-        //this.api.test().subscribe();
+        this.getAds("asdf123");
     }
 
     uploadImage(event: any) {
@@ -29,11 +33,17 @@ export class CmsImagesComponent implements OnInit {
                 "extension": img.name.split(".")[1]
             };
             debugger
-            //this.api.uploadImage(reader.result).subscribe(response => {
             this.api.uploadImage(data).subscribe(response => {
                 debugger
             });
         }
+    }
+
+    getAds(userID: string) {
+        this.api.getAds("asdf123").subscribe(response => {
+            this.images = response;
+            debugger
+        });
     }
 
 }

@@ -6,6 +6,7 @@ import (
 	"encoding/base64"
 	"fmt"
 	"image/jpeg"
+	"log"
 	"os"
 	"time"
 
@@ -67,15 +68,17 @@ func Start() {
 				}
 
 				jpeg.Encode(f, img, nil)
+
 				//case "png":
 				//	r := bytes.NewReader(dec)
 				//	img, err := png.Decode(r)
-				//	f, err := os.OpenFile("./images"+data.UserID+"/"+filename+"."+data.Extension, os.O_WRONLY|os.O_CREATE, 0777)
+				//	f, err := os.OpenFile("./images/"+data.UserID+"/"+filename+"."+data.Extension, os.O_WRONLY|os.O_CREATE, 0777)
 				//	if err != nil {
 				//		panic("Cannot open file")
 				//	}
 
 				//	png.Encode(f, img, nil)
+
 			}
 
 			c.JSON(200, gin.H{
@@ -85,6 +88,8 @@ func Start() {
 	})
 
 	r.GET("/getAds", func(c *gin.Context) {
+		var userID = c.Query("userID")
+		log.Println(userID)
 		c.JSON(200, gin.H{
 			"message": "ads route",
 		})
