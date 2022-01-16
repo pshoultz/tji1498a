@@ -5,7 +5,9 @@ import (
 	"crypto/rand"
 	"encoding/base64"
 	"fmt"
+	"image"
 	"image/jpeg"
+	"io/ioutil"
 	"log"
 	"os"
 	"time"
@@ -24,7 +26,7 @@ func Start() {
 		ExposeHeaders:    []string{"*"},
 		AllowCredentials: true,
 		AllowOriginFunc: func(origin string) bool {
-			return origin == "https://github.com"
+			return origin == "*"
 		},
 		MaxAge: 12 * time.Hour,
 	}))
@@ -88,11 +90,35 @@ func Start() {
 	})
 
 	r.GET("/getAds", func(c *gin.Context) {
-		var userID = c.Query("userID")
-		log.Println(userID)
-		c.JSON(200, gin.H{
-			"message": "ads route",
-		})
+		//c.JSON(200, gin.H{
+		//	"message": "asdfasdfasdf",
+		//})
+		//var userID = c.Query("userID")
+		//log.Println(userID)
+		//var userID = "asdf123"
+		//files, err := ioutil.ReadDir("./images/" + userID)
+		//if err != nil {
+		//	log.Fatal(err)
+		//}
+
+		//for _, f := range files {
+		//	log.Println(f)
+		//}
+		//c.JSON(200, gin.H{
+		//	"message": "/getAds",
+		//})
+		fileBytes, err := ioutil.ReadFile("./images/asdf123/A114D185464C9EE91AE529C9835872DC.jpg")
+		jpeg.Encode(fileBytes, image.Image, nil)
+		if err != nil {
+			panic(err)
+		} else {
+			log.Println("sending file back...")
+
+			c.Header("Content-Type", "image/jpeg")
+			c.Writer.Write(fileBytes)
+			c.Writer.WriteHeader(200)
+			return
+		}
 	})
 
 	r.GET("/ping", func(c *gin.Context) {
