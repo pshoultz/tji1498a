@@ -28,7 +28,8 @@ export class ApiService {
         //debugger
 
         //return this.http.get(this.base + "/getAds", {params: params});
-        return this.http.get(this.base + "/getAds");
+        //return this.http.get(this.base + "/getAds");
+        return this.http.get(this.base + "/image");
     }
 
 }

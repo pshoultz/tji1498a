@@ -5,31 +5,43 @@ import (
 	"crypto/rand"
 	"encoding/base64"
 	"fmt"
-	"image"
 	"image/jpeg"
-	"io/ioutil"
-	"log"
 	"os"
-	"time"
 
-	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
+func CORS() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
+		c.Writer.Header().Set("Access-Control-Allow-Credentials", "true")
+		c.Writer.Header().Set("Access-Control-Allow-Headers", "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With")
+		c.Writer.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS, GET, PUT, DELETE")
+
+		if c.Request.Method == "OPTIONS" {
+			c.AbortWithStatus(204)
+			return
+		}
+
+		c.Next()
+	}
+}
+
 func Start() {
 	r := gin.Default()
+	r.Use(CORS())
 
-	r.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"*"},
-		AllowMethods:     []string{"*"},
-		AllowHeaders:     []string{"*"},
-		ExposeHeaders:    []string{"*"},
-		AllowCredentials: true,
-		AllowOriginFunc: func(origin string) bool {
-			return origin == "*"
-		},
-		MaxAge: 12 * time.Hour,
-	}))
+	//r.Use(cors.New(cors.Config{
+	//	AllowOrigins:     []string{"*"},
+	//	AllowMethods:     []string{"*"},
+	//	AllowHeaders:     []string{"*"},
+	//	ExposeHeaders:    []string{"*"},
+	//	AllowCredentials: true,
+	//	AllowOriginFunc: func(origin string) bool {
+	//		return origin == "*"
+	//	},
+	//	MaxAge: 12 * time.Hour,
+	//}))
 
 	r.POST("/uploadImage", func(c *gin.Context) {
 		type Data_Struct struct {
@@ -89,6 +101,7 @@ func Start() {
 		}
 	})
 
+	r.Static("/image", "./images/asdf123/A114D185464C9EE91AE529C9835872DC.jpg")
 	r.GET("/getAds", func(c *gin.Context) {
 		//c.JSON(200, gin.H{
 		//	"message": "asdfasdfasdf",
@@ -107,18 +120,36 @@ func Start() {
 		//c.JSON(200, gin.H{
 		//	"message": "/getAds",
 		//})
-		fileBytes, err := ioutil.ReadFile("./images/asdf123/A114D185464C9EE91AE529C9835872DC.jpg")
-		jpeg.Encode(fileBytes, image.Image, nil)
-		if err != nil {
-			panic(err)
-		} else {
-			log.Println("sending file back...")
+		//fileBytes, err := ioutil.ReadFile("./images/asdf123/A114D185464C9EE91AE529C9835872DC.jpg")
+		//jpeg.Encode(fileBytes, image.Image, nil)
+		//if err != nil {
+		//	panic(err)
+		//} else {
+		//	log.Println("sending file back...")
 
-			c.Header("Content-Type", "image/jpeg")
-			c.Writer.Write(fileBytes)
-			c.Writer.WriteHeader(200)
-			return
-		}
+		//	c.Header("Content-Type", "image/jpeg")
+		//	c.Writer.Write(fileBytes)
+		//	c.Writer.WriteHeader(200)
+		//	return
+		//}
+		//f, err := os.Open("./images/asdf123/A114D185464C9EE91AE529C9835872DC.jpg")
+
+		//if err != nil {
+		//	panic(err)
+		//}
+
+		//defer f.Close()
+
+		//fileInfo, _ := f.Stat()
+		//var size int64 = fileInfo.Size()
+		//bytes := make([]byte, size)
+
+		//buffer := bufio.NewReader(f)
+		//_, err = buffer.Read(bytes)
+
+		//c.Header("Content-Type", "image/jpeg")
+		//c.Writer.Write(bytes)
+		//c.Writer.WriteHeader(200)
 	})
 
 	r.GET("/ping", func(c *gin.Context) {
