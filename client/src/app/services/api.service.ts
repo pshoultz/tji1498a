@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -22,14 +22,17 @@ export class ApiService {
     }
 
     //NOTE: query params not working for API
+    //NOTE: add headers for access-control-allow-origin
     getAds(userID: string) {
         //let params = new HttpParams();
         //params = params.append('userID', userID);
+        const headers = new HttpHeaders()
+        .set("Allow-Access-Control-Origin", "*");
         //debugger
 
         //return this.http.get(this.base + "/getAds", {params: params});
         //return this.http.get(this.base + "/getAds");
-        return this.http.get(this.base + "/image");
+        return this.http.get(this.base + "/getAds", {'headers': headers});
     }
 
 }

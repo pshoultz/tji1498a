@@ -17,9 +17,6 @@ export class CmsImagesComponent implements OnInit {
 
     ngOnInit(): void {
         this.getAds("asdf123");
-        //this.api.test().subscribe(response => {
-        //    debugger
-        //});
     }
 
     uploadImage(event: any) {
