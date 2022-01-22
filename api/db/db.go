@@ -2,20 +2,31 @@ package db
 
 import (
 	"context"
-	"time"
+	"fmt"
+	"log"
 
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-func Connect() mongo.Connect {
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-	defer cancel()
-	client, err := mongo.Connect(ctx, options.Client().ApplyURI("mongodb://localhost:27017"))
+var collection *mongo.Collection
+var ctx = context.TODO()
+
+func Connect() {
+	log.Println("trying to connect to db...")
+
+	clientOptions := options.Client().ApplyURI("mongodb://mongodb:27017")
+	client, err := mongo.Connect(context.TODO(), clientOptions)
 
 	if err != nil {
-
+		log.Fatal(err)
 	}
 
-	return client
+	err = client.Ping(context.TODO(), nil)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println("Connected to MongoDB!")
 }
