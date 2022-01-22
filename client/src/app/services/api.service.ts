@@ -28,11 +28,12 @@ export class ApiService {
         //params = params.append('userID', userID);
         const headers = new HttpHeaders()
         .set("Allow-Access-Control-Origin", "*");
-        //debugger
 
-        //return this.http.get(this.base + "/getAds", {params: params});
-        //return this.http.get(this.base + "/getAds");
-        return this.http.get(this.base + "/getAds", {'headers': headers});
+        return this.http.get(this.base + "/getAds", {
+            //'params': params,
+            'responseType': 'blob',
+            'headers': headers
+        });
     }
 
 }

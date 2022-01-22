@@ -10,6 +10,7 @@ import { ApiService } from '../../services/api.service';
 export class CmsImagesComponent implements OnInit {
 
     public images: any;
+    public image: any;
     
     constructor(
         public api: ApiService,
@@ -41,8 +42,11 @@ export class CmsImagesComponent implements OnInit {
 
     getAds(userID: string) {
         this.api.getAds("asdf123").subscribe(response => {
-            this.images = response;
-            debugger
+            const reader = new FileReader();
+            reader.readAsDataURL(response);
+            reader.onload = _event => {
+                this.image = reader.result;
+            };
         });
     }
 

@@ -5,9 +5,7 @@ import (
 	"crypto/rand"
 	"encoding/base64"
 	"fmt"
-	"image"
 	"image/jpeg"
-	"io/ioutil"
 	"log"
 	"os"
 
@@ -83,32 +81,20 @@ func Start() {
 	})
 
 	r.GET("/getAds", func(c *gin.Context) {
-		//var userID = c.Query("userID")
-		//log.Println(userID)
-		//files, err := ioutil.ReadDir("./images/" + userID)
+		//fileBytes, err := ioutil.ReadFile("./images/asdf123/A114D185464C9EE91AE529C9835872DC.jpg")
+
 		//if err != nil {
-		//	log.Fatal(err)
+		//	panic(err)
+		//} else {
+		//	c.Writer.WriteHeader(200)
+		//	c.Header("Content-Type", "image/jpeg")
+		//	c.Writer.Write(fileBytes)
+		//	log.Println(fileBytes)
 		//}
 
-		//for _, f := range files {
-		//	log.Println(f.Name)
-		//}
-		//c.JSON(200, gin.H{
-		//	"message": "/getAds",
-		//})
-
-		fileBytes, err := ioutil.ReadFile("./images/asdf123/A114D185464C9EE91AE529C9835872DC.jpg")
-		jpeg.Encode(fileBytes, image.Image, nil)
-		if err != nil {
-			panic(err)
-		} else {
-			log.Println("sending file back...")
-
-			c.Header("Content-Type", "image/jpeg")
-			c.Writer.Write("")
-			c.Writer.WriteHeader(200)
-			return
-		}
+		c.Header("Content-Type", "image/jpeg")
+		c.File("./images/asdf123/A114D185464C9EE91AE529C9835872DC.jpg")
+		return
 	})
 
 	r.GET("/ping", func(c *gin.Context) {
