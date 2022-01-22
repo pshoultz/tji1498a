@@ -81,20 +81,8 @@ func Start() {
 	})
 
 	r.GET("/getAds", func(c *gin.Context) {
-		//fileBytes, err := ioutil.ReadFile("./images/asdf123/A114D185464C9EE91AE529C9835872DC.jpg")
-
-		//if err != nil {
-		//	panic(err)
-		//} else {
-		//	c.Writer.WriteHeader(200)
-		//	c.Header("Content-Type", "image/jpeg")
-		//	c.Writer.Write(fileBytes)
-		//	log.Println(fileBytes)
-		//}
-
 		c.Header("Content-Type", "image/jpeg")
 		c.File("./images/asdf123/A114D185464C9EE91AE529C9835872DC.jpg")
-		return
 	})
 
 	r.GET("/ping", func(c *gin.Context) {

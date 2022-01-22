@@ -3,5 +3,13 @@
         <p>cms-images working</p>
         <input type="file" (change)="uploadImage($event)">
     </div>
-    <img src="{{image}}"/>
+    <div class="container">
+        <img src="{{image}}"/>
+          <div class="bottom-left">Bottom Left</div>
+          <div class="top-left">Top Left</div>
+          <div class="top-right">Top Right</div>
+          <div class="bottom-right">Bottom Right</div>
+          <div class="centered">Centered</div>
+    </div>
 </div>
+

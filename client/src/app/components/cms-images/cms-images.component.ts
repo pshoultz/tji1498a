@@ -46,6 +46,7 @@ export class CmsImagesComponent implements OnInit {
             reader.readAsDataURL(response);
             reader.onload = _event => {
                 this.image = reader.result;
+                debugger
             };
         });
     }
