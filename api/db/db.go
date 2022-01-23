@@ -13,9 +13,11 @@ var collection *mongo.Collection
 var ctx = context.TODO()
 
 func Connect() {
+	//var user_struct User_struct
 	log.Println("trying to connect to db...")
 
-	clientOptions := options.Client().ApplyURI("mongodb://mongodb:27017")
+	//clientOptions := options.Client().ApplyURI("mongodb://mongodb:27017")
+	clientOptions := options.Client().ApplyURI("mongodb://127.0.0.1:27017")
 	client, err := mongo.Connect(context.TODO(), clientOptions)
 
 	if err != nil {
@@ -29,4 +31,6 @@ func Connect() {
 	}
 
 	fmt.Println("Connected to MongoDB!")
+
+	collection = client.Database("src16-beta").Collection("users")
 }
