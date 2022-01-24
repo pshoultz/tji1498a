@@ -13,6 +13,7 @@ import (
 	"github.com/pshoultz/tji1498a/api/db"
 	cors "github.com/rs/cors/wrapper/gin"
 	//NOTE: pacakges I made
+	//"github.com/pshoultz/tji1498a/api/models/users"
 )
 
 func Start() {
@@ -96,6 +97,7 @@ func Start() {
 	r.GET("/test", func(c *gin.Context) {
 		log.Println("in /test")
 		db.Connect()
+		user.GetUser("asdf123")
 
 		c.JSON(200, gin.H{
 			"message": "pong",

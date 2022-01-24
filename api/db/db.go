@@ -8,16 +8,12 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	//NOTE: project level imports
-	//User_Model "github.com/pshoultz/tji1498a/api/models/users"
 )
 
 var collection *mongo.Collection
 var ctx = context.TODO()
 
-//var user_model User_Model
-
-func Connect() {
-	//var user_struct User_struct
+func Connect() *mongo.Client {
 	log.Println("trying to connect to db...")
 
 	clientOptions := options.Client().ApplyURI("mongodb://127.0.0.1:27017")
@@ -34,16 +30,26 @@ func Connect() {
 	}
 
 	fmt.Println("Connected to MongoDB!")
+	return client
 
-	collection = client.Database("src16-beta").Collection("users")
+	//collection = client.Database("src16-beta").Collection("users")
+	//cursor, err := collection.Find(context.TODO(), bson.D{{}})
+	//var results []bson.M
+	//if err = cursor.All(context.TODO(), &results); err != nil {
+	//	log.Fatal(err)
+	//}
+	//for _, result := range results {
+	//	fmt.Println(result)
+	//}
+	//log.Println("done....")
 }
 
-func Disconnect(m *mongo.Client) bool {
-	err := m.Disconnect()
-
-	if err != nil {
-		return false
-	}
-
-	return true
-}
+//func Disconnect(m *mongo.Client) bool {
+//	err := m.Disconnect(m)
+//
+//	if err != nil {
+//		return false
+//	}
+//
+//	return true
+//}
