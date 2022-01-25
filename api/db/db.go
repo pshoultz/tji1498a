@@ -7,7 +7,6 @@ import (
 
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
-	//NOTE: project level imports
 )
 
 var collection *mongo.Collection
@@ -31,25 +30,14 @@ func Connect() *mongo.Client {
 
 	fmt.Println("Connected to MongoDB!")
 	return client
-
-	//collection = client.Database("src16-beta").Collection("users")
-	//cursor, err := collection.Find(context.TODO(), bson.D{{}})
-	//var results []bson.M
-	//if err = cursor.All(context.TODO(), &results); err != nil {
-	//	log.Fatal(err)
-	//}
-	//for _, result := range results {
-	//	fmt.Println(result)
-	//}
-	//log.Println("done....")
 }
 
-//func Disconnect(m *mongo.Client) bool {
-//	err := m.Disconnect(m)
-//
-//	if err != nil {
-//		return false
-//	}
-//
-//	return true
-//}
+func Disconnect(m *mongo.Client) bool {
+	err := m.Disconnect(context.TODO())
+
+	if err != nil {
+		return false
+	}
+
+	return true
+}
