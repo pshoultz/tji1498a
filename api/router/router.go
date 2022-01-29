@@ -10,9 +10,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	cors "github.com/rs/cors/wrapper/gin"
-
 	//NOTE: pacakges I made
-	services "github.com/pshoultz/tji1498a/api/services"
 )
 
 func Start() {
@@ -94,11 +92,11 @@ func Start() {
 	})
 
 	r.GET("/test", func(c *gin.Context) {
-		payload := services.GetUser("asdf123")
+		//payload := services.GetUser("asdf123")
 
-		c.JSON(200, gin.H{
-			"data": payload,
-		})
+		//c.JSON(200, gin.H{
+		//	"data": payload,
+		//})
 	})
 
 	r.Run(":8080") // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
