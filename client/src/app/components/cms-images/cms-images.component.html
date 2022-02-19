@@ -1,40 +1,11 @@
 <div>
     <div>
-        <p>cms-images working</p>
         <input type="file" (change)="uploadImage($event)">
     </div>
 
-    <!--<div class="container">
-        <img style="height:100%; width:100%;" src="{{image}}"/>
-        <div class="bottom-left">Bottom Left</div>
-        <div class="top-left">Top Left</div>
-        <div class="top-right">Top Right</div>
-        <div class="bottom-right">Bottom Right</div>
-        <div class="centered">Centered</div>
-    </div>-->
-
-    <!--<div class="card">
-        <div class="card-img">
-            <img src="{{image}}" />
-        </div>
-        <div class="card-block">
-          <h4 class="card-title">Title</h4>
-          <p class="card-text">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, aut. Nihil nemo, necessitatibus earum.
-          </p>
-        </div>
-        <ul class="list-group">
-          <li class="list-group-item">Lorem ipsum dolor.</li>
-          <li class="list-group-item">Lorem ipsum dolor sit.</li>
-          <li class="list-group-item">Lorem ipsum.</li>
-        </ul>
-        <div class="card-footer">
-          <a href="javascript:void(0)" class="btn btn-sm btn-link">save</a>
-          <a href="javascript:void(0)" class="btn btn-sm btn-link">delete</a>
-        </div>
-    </div>-->
     <div class="clr-row">
         <div class="clr-col-lg-6 clr-col-12" (click)="selectCard()">
+            <app-cms-image-edit [image]="image"> </app-cms-image-edit>
             <a href="javascript:void(0)" class="card clickable">
               <div class="card-img">
                 <img src="{{image}}" />

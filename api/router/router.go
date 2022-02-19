@@ -81,6 +81,16 @@ func Start() {
 	})
 
 	r.GET("/getAds", func(c *gin.Context) {
+		files, err := os.ReadDir("./images/asdf123/")
+
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		for _, file := range files {
+			fmt.Println(file.Name())
+		}
+
 		c.Header("Content-Type", "image/jpeg")
 		c.File("./images/asdf123/A114D185464C9EE91AE529C9835872DC.jpg")
 	})

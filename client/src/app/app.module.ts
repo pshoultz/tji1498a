@@ -13,6 +13,7 @@ import { CmsVideosComponent } from './components/cms-videos/cms-videos.component
 import { HeaderComponent } from './components/header/header.component';
 import { SubnavComponent } from './components/subnav/subnav.component';
 import { AttractComponent } from './components/attract/attract.component';
+import { CmsImageEditComponent } from './components/cms-image-edit/cms-image-edit.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AttractComponent } from './components/attract/attract.component';
     CmsVideosComponent,
     HeaderComponent,
     SubnavComponent,
-    AttractComponent
+    AttractComponent,
+    CmsImageEditComponent
   ],
   imports: [
     BrowserModule,
